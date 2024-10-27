@@ -27,10 +27,18 @@ enum PetPersonality {
   INDEPENDENT
 }
 
+enum PetGender {
+  UNDEFINED
+  MALE
+  FEMALE
+}
+
 model Pet {
   id              String            @id @default(uuid())
   name            String            @db.VarChar(255)
   specie          String            @db.VarChar(150)
+  breed           String?           @db.VarChar(150)
+  gender          PetGender         @default(UNDEFINED)
   dob             DateTime          @db.Date
   description     String            @db.VarChar(255)
 
