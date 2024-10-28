@@ -1,5 +1,7 @@
 export class PetController {
 
+    async getAllPets(req, res){}
+
     async getById(req, res){}
 
     async insertPet(req, res){}
@@ -7,7 +9,5 @@ export class PetController {
     async updatePet(req, res){}
 
     async deletePet(req, res){}
-
-    
 
 }
