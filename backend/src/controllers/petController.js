@@ -34,7 +34,7 @@ export async function getAll(req, res) {
   /**
     #swagger.tags = ['Pets']
     #swagger.description = 'Endpoint to get all pets.'
-    #swagger.summary = 'gGet all pets.'
+    #swagger.summary = 'Get all pets.'
   */
   try {
     const pets = await prismaClient.pet.findMany({
