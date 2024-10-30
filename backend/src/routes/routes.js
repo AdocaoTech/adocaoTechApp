@@ -1,12 +1,13 @@
 import { Router } from "express";
-import { userRoutes } from "./userRoutes.js";
+
 import { petsRoutes } from "./petsRoutes.js";
-//import { adoptionRoutes } from "./adoptionRoutes.js";
+import { userRoutes } from "./userRoutes.js";
+import { adoptRoutes } from "./adoptRoutes.js";
 
-const router = Router();
+const routes = Router();
 
-userRoutes(router);
-petsRoutes(router);
-//adoptionRoutes(router);
+routes.use("/pets", petsRoutes);
+routes.use("/adopt", adoptRoutes);
+routes.use("/user", userRoutes);
 
-export { router };
+export default routes;
