@@ -1,11 +1,11 @@
-import { UserController } from "../controllers/userController.js";
+import { Router } from "express";
+import * as UserController from "../controllers/userController.js";
 
-const userController = new UserController();
+const routes = Router();
 
-export function userRoutes( router ){
+routes.get("/user/:id", UserController.getById);
+routes.post("/singup", UserController.create);
+routes.post("/login", UserController.validateLogin);
 
-    router.get('/user/:id', userController.getById);
-    router.post('/singup', userController.insertUser);
-    router.post('/login', userController.validateLogin);
 
-} 
+export { routes as userRoutes };
