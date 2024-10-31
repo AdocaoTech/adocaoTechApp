@@ -22,8 +22,8 @@ enum PetSize {
 
 enum PetPersonality {
   UNDEFINED
-  CALM
-  PLAYFUL
+  CALM 
+  PLAYFUL 
   INDEPENDENT
 }
 
@@ -34,25 +34,23 @@ enum PetGender {
 }
 
 model Pet {
-  id          String   @id @default(uuid())
-  name        String   @db.VarChar(255)
-  specie      String   @db.VarChar(150)
-  dob         DateTime @db.Date
-  description String   @db.VarChar(255)
-
+  id              String            @id @default(uuid())
+  name            String            @db.VarChar(255)
+  specie          String            @db.VarChar(150)
   breed           String?           @db.VarChar(150)
   gender          PetGender         @default(UNDEFINED)
+  dob             DateTime          @db.Date
+  description     String            @db.VarChar(255)
 
   status          PetStatus         @default(AVAILABLE)
   size            PetSize           @default(UNDEFINED)
   personality     PetPersonality    @default(UNDEFINED)
 
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at      DateTime          @default(now())
+  updated_at      DateTime          @default(now())
 
-  Adoption Adoption?                // Um pet só pode ser adotado uma vez, regra de negocio não está considerando devoluções
-
-  @@map("pets")
+  @@map("pet")
+  Adoption Adoption?              // Um pet só pode ser adotado uma vez, regra de negocio não está considerando devoluções
 }
 
 enum Role {
@@ -73,23 +71,23 @@ model User {
   created_at      DateTime          @default(now())
   updated_at      DateTime          @default(now()) 
 
-  Adoption Adoption[]               // Um usuário pode realizar várias adoções
-
-  @@map("users")
+  @@map("user")
+  Adoption Adoption[]             // Um usuário pode realizar várias adoções
 }
 
 model Adoption {
-  id           String   @id @default(uuid())
-  adoptionDate DateTime @map("adoption_date") @db.Date
+  id              String            @id @default(uuid())
+  adoptionDate    DateTime          @db.Date @map("adoption_date")
 
-  petId String @unique @map("pet_id")
-  pet   Pet    @relation(fields: [petId], references: [id])
+  petId           String            @unique @map("pet_id")
+  pet             Pet               @relation(fields: [petId], references: [id])
 
-  userId String @map("user_id")
-  user   User   @relation(fields: [userId], references: [id])
+  userId          String            @map("user_id")
+  user            User              @relation(fields: [userId], references: [id])
 
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at      DateTime          @default(now())
+  updated_at      DateTime          @default(now())
 
-  @@map("adoptions")
+  @@map("adoption")
+}
 
