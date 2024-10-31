@@ -9,16 +9,18 @@ export async function create(req, res) {
     */
 
     try {
-        const { name, specie, description, size, personality, dob } = req.body;
+        const { name, specie, breed, gender, dob, description, size, personality,  } = req.body;
 
         const pet = await prismaClient.pet.create({
             data: {
                 name,
                 specie,
+                breed,
+                gender,
+                dob: new Date(dob),
                 description,
                 size,
                 personality,
-                dob: new Date(),
             },
         });
         // #swagger.responses[201] = { description: 'User registered successfully.' }
@@ -43,9 +45,13 @@ export async function getAll(req, res) {
       select: {
         id: true,
         name: true,
+        specie: true,
+        breed: true,
+        gender: true,
         dob: true,
         description: true,
-        status: true,
+        size: true,
+        personality: true,
       },
     });
     // #swagger.responses[200] = { description: 'Successful request.' }
