@@ -6,8 +6,8 @@ import { adoptRoutes } from "./adoptRoutes.js";
 
 const routes = Router();
 
-routes.use("/pets", petsRoutes);
-routes.use("/adopt", adoptRoutes);
-routes.use("/user", userRoutes);
+routes.use("/", petsRoutes);
+routes.use("/", adoptRoutes);
+routes.use("/", userRoutes);
 
 export default routes;
